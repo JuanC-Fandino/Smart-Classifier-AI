@@ -1,0 +1,29 @@
+.navbar-navbar-default {
+    background: black;
+}
+
+.navbar {
+    box-shadow: 0px 8px 8px -6px rgba(0, 0, 0, .5);
+}
+
+a:hover {
+    color: black;
+    transition: 1s;
+}
+
+.navbar-brand-expand-sm img {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 70%;
+}
+
+body {
+    color: #eee;
+    background: #121212;
+    font-family: "Silkscreen-Regular", sans-serif;
+}
+
+@font-face {
+    font-family: "Silkscreen-Regular";
+    src: url("../fonts/Silkscreen-Regular.ttf") format("truetype");
+}
