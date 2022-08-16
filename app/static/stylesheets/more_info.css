@@ -1,0 +1,12 @@
+.image_inside {
+    object-fit: cover;
+    height: 250px
+}
+
+.main_carousel {
+    height: 250px
+}
+
+.info_container{
+    margin-top: 2rem;
+}

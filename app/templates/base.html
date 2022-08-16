@@ -5,24 +5,24 @@
 <html lang="en">
 <head>
     {% block head %}
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Smart Classifier</title>
-    {% block styles %}
-    <!-- Bootstrap CSS -->
-    {{ bootstrap.load_css() }}
-    <link href="../static/stylesheets/style.css" rel="stylesheet"/>
-    {% endblock %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Smart Classifier</title>
+        {% block styles %}
+            <!-- Bootstrap CSS -->
+            {{ bootstrap.load_css() }}
+            <link href="../static/stylesheets/style.css" rel="stylesheet"/>
+        {% endblock %}
 
-    <title>Your page title</title>
+        <title>Your page title</title>
     {% endblock %}
 </head>
 <body class="blackish">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container">
         <a class="navbar-brand" href="#">
-            <img src="../static/Smart-classifier-1_1_.svg" alt="" width="30" height="24">
+            <img src="../static/logo.svg" alt="" width="30" height="30">
             Smart Classifier
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -45,7 +45,7 @@
 
 
 {% block scripts %}
-{{ bootstrap.load_js() }}
+    {{ bootstrap.load_js() }}
 {% endblock %}
 </body>
 </html>
