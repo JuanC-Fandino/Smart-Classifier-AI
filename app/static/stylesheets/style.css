@@ -23,6 +23,10 @@ body {
     font-family: "Silkscreen-Regular", sans-serif;
 }
 
+.standard_text {
+    color: darkgray;
+}
+
 @font-face {
     font-family: "Silkscreen-Regular";
     src: url("../fonts/Silkscreen-Regular.ttf") format("truetype");

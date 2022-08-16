@@ -4,20 +4,23 @@
 
 {% block content %}
     <link href="../static/stylesheets/home.css" rel="stylesheet"/>
+    <h1 class="text-center mb-4">
+        ¿Cansado de no saber en cúal bolsa debes tirar tu basura?
+    </h1>
     <div class="main_container">
         <div class="video_container">
             <video class="video_capture" id="player" controls autoplay poster="../static/video-placeholder.jpg"></video>
         </div>
-        <div class="side card text-center">
-            <p class="pt-5 ps-2 pe-2">
-                Cansado de no saber en que basura debes tirar tus desechos?
-                <br>
-                Con Smart Classifier podrás escanear tu basura y saber a que contenedor de basura debe ir.
-            <hr>
-            ¡PRENDE TU CAMARA Y COMIENZA A USAR NUESTRA APP!
+        <div class="side card text-center p-3">
+            ¡DANOS ACCESO TU CÁMARA Y COMIENZA A USAR NUESTRA APP!
             <div style="display:inline-flex; justify-content: center">
-                {{ render_icon('camera', size='100px') }}
+                {{ render_icon('camera', size='70px') }}
+            </div>
+                        <hr>
 
+            Deja que nuestros avanzados algoritmos de inteligencia artificial te faciliten la vida
+            <div style="display:inline-flex; justify-content: center">
+                <img src="../static/ia.png" style="width:100px; heigh:100px ">
             </div>
             </p>
         </div>
@@ -25,15 +28,15 @@
 
     <div class="types">
         <div class="card mb-3">
-            <h5 class="card-header">Featured</h5>
+            <h5 class="card-header text-secondary">Residuos aprovechables</h5>
             <div class="row g-0">
-                <div class="col-md-2">
+                <div class="col-md-2 text-center">
                     <img src="../static/basura_blanca.png" class="img-fluid rounded-start card_image" alt="...">
                 </div>
                 <div class="col-md-10">
                     <div class="card-body">
                         <h5 class="card-title text-black">Color Blanco</h5>
-                        <p class="card-text text-secondary">Residuos aprovechables como plástico, vidrio, metales,
+                        <p class="card-text standard_text">Residuos aprovechables como plástico, vidrio, metales,
                             multicapa,
                             papel y cartón.</p>
                         <a href="{{ url_for('main.white') }}" class="btn custom_btn">Aprende más</a>
@@ -42,34 +45,32 @@
             </div>
         </div>
         <div class="card mb-3">
-            <h5 class="card-header">Featured</h5>
+            <h5 class="card-header text-secondary">Residuos orgánicos</h5>
             <div class="row g-0">
                 <div class="col-md-10">
                     <div class="card-body">
                         <h5 class="card-title text-black">Color Verde</h5>
-                        <p class="card-text text-secondary">Para depositar residuos orgánicos aprovechables como restos
-                            de
-                            comida y desechos
-                            agrícolas.</p>
+                        <p class="card-text standard_text">Para depositar residuos orgánicos aprovechables como restos
+                            de comida y desechos agrícolas.</p>
                         <a href="{{ url_for('main.green') }}" class="btn custom_btn">Aprende más</a>
                     </div>
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-2 text-center">
                     <img src="../static/basura_verde.png" class="img-fluid rounded-start card_image" alt="...">
                 </div>
             </div>
         </div>
         <div class="card mb-3">
-            <h5 class="card-header">Featured</h5>
+            <h5 class="card-header text-secondary">Residuos no aprovechables</h5>
             <div class="row g-0">
-                <div class="col-md-2">
+                <div class="col-md-2 text-center">
                     <img src="../static/basura_negra.png" class="img-fluid rounded-start card_image" alt="...">
                 </div>
                 <div class="col-md-10">
                     <div class="card-body">
                         <h5 class="card-title text-black">Color Negro</h5>
-                        <p class="card-text text-secondary">Para depositar los residuos
+                        <p class="card-text standard_text">Para depositar los residuos
                             no aprovechables como servilletas papeles metalizados, contaminados con comida..</p>
                         <a href="{{ url_for('main.black') }}" class="btn custom_btn">Aprende más</a>
                     </div>

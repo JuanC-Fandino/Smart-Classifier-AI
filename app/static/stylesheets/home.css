@@ -54,7 +54,9 @@
         flex-direction: column;
     }
 
-    .side {
-        height: 200px
+    .card_image{
+        align-content: center;
+        justify-content: center;
+        width: 100px;
     }
 }
