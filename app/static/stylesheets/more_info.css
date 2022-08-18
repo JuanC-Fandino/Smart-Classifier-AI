@@ -1,12 +1,21 @@
 .image_inside {
     object-fit: cover;
-    height: 250px
+    height: 250px;
 }
 
 .main_carousel {
-    height: 250px
+    height: 100%;
 }
 
-.info_container{
+.info_container {
     margin-top: 2rem;
+}
+
+.highlighted_section_green {
+    border: 2px green dashed;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: green !important;
+    color: white;
 }

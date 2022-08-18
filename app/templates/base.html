@@ -39,7 +39,7 @@
 <body class="blackish">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ url_for('main.home') }}">
             <img src="../static/logo.svg" alt="" width="30" height="30">
             Smart Classifier
         </a>
@@ -49,9 +49,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
-                {{ render_nav_item('main.home', 'Home', use_li=True) }}
                 <li class="nav-item"><a class="nav-link" href="https://github.com/JuanC-Fandino"
                                         target="_blank">GitHub</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Código de Colores
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{ url_for('main.white') }}">Blanco</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('main.green') }}">Verde</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('main.black') }}">Negro</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

@@ -13,14 +13,13 @@
         </div>
         <div class="side card text-center p-3">
             ¡DANOS ACCESO TU CÁMARA Y COMIENZA A USAR NUESTRA APP!
-            <div style="display:inline-flex; justify-content: center">
+            <div class="text-center">
                 {{ render_icon('camera', size='70px') }}
             </div>
-                        <hr>
-
+            <hr>
             Deja que nuestros avanzados algoritmos de inteligencia artificial te faciliten la vida
-            <div style="display:inline-flex; justify-content: center">
-                <img src="../static/ia.png" style="width:100px; heigh:100px ">
+            <div class="text-center">
+                <img src="../static/ia.png" class="ia_icon">
             </div>
             </p>
         </div>
@@ -83,6 +82,7 @@
 {% endblock %}
 
 {% block scripts %}
+    {{ super() }}
     <script>
         const player = document.getElementById('player');
 

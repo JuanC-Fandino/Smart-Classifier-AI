@@ -1,0 +1,2 @@
+### SMART CLASSIFIER
+El presente proyecto tiene como objetivo el diseño e implementación de una aplicación web para la clasificación de desechos sólidos a través del uso de un modelo de machine learning. Esto con el propósito de contribuir desde el área de las ciencias de la computación a problemáticas ambientales entre las que se encuentran la acumulación de desechos, la sobreexplotación de los recursos naturales y la contaminación de fuentes hídricas.
