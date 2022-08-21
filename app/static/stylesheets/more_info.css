@@ -3,16 +3,16 @@
     height: 250px;
 }
 
-.main_carousel {
-    height: 100%;
-}
-
-.info_container {
-    margin-top: 2rem;
-}
-
 .highlighted_section_green {
     border: 2px green dashed;
+}
+
+.highlighted_section_red {
+    border: 2px red dashed;
+}
+
+.info_container{
+    margin-top: 2rem;
 }
 
 .accordion-button:not(.collapsed) {

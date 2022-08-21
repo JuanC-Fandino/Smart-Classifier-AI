@@ -1,45 +1,27 @@
-form {
+.form-label {
+    display: none;
+}
+
+.form {
+    text-align: center;
+}
+
+.form > .form-check {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     display: flex;
-    flex-flow: column;
-    width: 100%;
-    padding: 20px;
-    border-radius: 4px;
-    font-size: 14px;
-    box-shadow: 0 2.8px 2.2px black,
-    0 6.7px 5.3px black,
-    0 12.5px 10px black,
-    0 22.3px 17.9px black,
-    0 41.8px 33.4px black,
-    0 50px 40px black;
-    flex-wrap: wrap;
-    margin: 5px;
+    justify-content: center;
+    gap: .5rem;
 }
 
-form .form-group input {
-    font-size: 14px;
+#username {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-width: 0;
 }
 
-form input {
-    font-size: 14px;
-    color: black;
+#password {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
-form label {
-    margin-top: 3vh;
-}
-
-.btn-default {
-    background: #28a745;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    padding: .5rem 1rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
-    border-radius: .3rem;
-}
-
-.btn-default:hover {
-    background: #218838;
-    color: white;
-}

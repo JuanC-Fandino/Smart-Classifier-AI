@@ -2,8 +2,27 @@
 {% from 'bootstrap5/form.html' import render_form %}
 
 {% block content %}
+<link href="../../static/stylesheets/styleLogin.css" rel="stylesheet"/>
+<div class="card text-secondary col-md-4 m-auto">
+    <div class="card-body standard_text">
+        <div class="text-center">
 
-<h2>Login</h2>
-{{ render_form(form) }}
+            <img src="../../static/logo.svg" class="text-center w-25 mt-3"
+                 alt="Responsive image">
+            <h5 class="card-title text-muted mt-2 mb-3">Iniciar Sesión</h5>
 
+        </div>
+        {% if error %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+        {% endif %}
+        {{ render_form(form) }}
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{{ super()}}
 {% endblock %}

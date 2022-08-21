@@ -4,7 +4,6 @@
 }
 
 .main_container {
-    height: 100%;
     display: grid;
     grid-template-columns: 68.5% 28.5%;
     gap: 3%
@@ -30,22 +29,11 @@
 
 .card_image {
     padding: 1rem;
-}
-
-.custom_btn {
-    background-color: #28a745;
-    border-color: #28a745;
-    color: white;
-}
-
-.custom_btn:hover {
-    background-color: #25933f;
-    border-color: #25933f;
-    color: white;
+    height: 150px;
 }
 
 .ia_icon {
-    width:100px;
+    width: 100px;
 }
 
 @media (max-width: 768px) {
@@ -58,5 +46,6 @@
         align-content: center;
         justify-content: center;
         width: 100px;
+        height: unset;
     }
 }

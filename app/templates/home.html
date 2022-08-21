@@ -9,7 +9,8 @@
     </h1>
     <div class="main_container">
         <div class="video_container">
-            <video class="video_capture" id="player" controls autoplay poster="../static/video-placeholder.jpg"></video>
+            <video class="video_capture" id="player" controls autoplay
+                   poster="../static/video-placeholder.jpg"></video>
         </div>
         <div class="side card text-center p-3">
             ¡DANOS ACCESO TU CÁMARA Y COMIENZA A USAR NUESTRA APP!
@@ -24,7 +25,6 @@
             </p>
         </div>
     </div>
-
     <div class="types">
         <div class="card mb-3">
             <h5 class="card-header text-secondary">Residuos aprovechables</h5>
@@ -38,7 +38,7 @@
                         <p class="card-text standard_text">Residuos aprovechables como plástico, vidrio, metales,
                             multicapa,
                             papel y cartón.</p>
-                        <a href="{{ url_for('main.white') }}" class="btn custom_btn">Aprende más</a>
+                        <a href="{{ url_for('main.white') }}" class="btn">Aprende más</a>
                     </div>
                 </div>
             </div>
@@ -49,9 +49,10 @@
                 <div class="col-md-10">
                     <div class="card-body">
                         <h5 class="card-title text-black">Color Verde</h5>
-                        <p class="card-text standard_text">Para depositar residuos orgánicos aprovechables como restos
+                        <p class="card-text standard_text">Para depositar residuos orgánicos aprovechables como
+                            restos
                             de comida y desechos agrícolas.</p>
-                        <a href="{{ url_for('main.green') }}" class="btn custom_btn">Aprende más</a>
+                        <a href="{{ url_for('main.green') }}" class="btn">Aprende más</a>
                     </div>
                 </div>
 
@@ -60,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mb-3">
+        <div class="card">
             <h5 class="card-header text-secondary">Residuos no aprovechables</h5>
             <div class="row g-0">
                 <div class="col-md-2 text-center">
@@ -71,14 +72,12 @@
                         <h5 class="card-title text-black">Color Negro</h5>
                         <p class="card-text standard_text">Para depositar los residuos
                             no aprovechables como servilletas papeles metalizados, contaminados con comida..</p>
-                        <a href="{{ url_for('main.black') }}" class="btn custom_btn">Aprende más</a>
+                        <a href="{{ url_for('main.black') }}" class="btn">Aprende más</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 {% endblock %}
 
 {% block scripts %}

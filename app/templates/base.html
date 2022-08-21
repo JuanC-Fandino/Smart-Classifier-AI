@@ -49,31 +49,44 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="https://github.com/JuanC-Fandino"
-                                        target="_blank">GitHub</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         Código de Colores
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ url_for('main.white') }}">Blanco</a></li>
-                        <li><a class="dropdown-item" href="{{ url_for('main.green') }}">Verde</a></li>
-                        <li><a class="dropdown-item" href="{{ url_for('main.black') }}">Negro</a></li>
+                        <li><a class="dropdown-item text-muted" href="{{ url_for('main.white') }}">Blanco</a></li>
+                        <li><a class="dropdown-item text-muted" href="{{ url_for('main.green') }}">Verde</a></li>
+                        <li><a class="dropdown-item text-muted" href="{{ url_for('main.black') }}">Negro</a></li>
                     </ul>
                 </li>
+                {{ render_nav_item('auth.login', 'Iniciar Sesión') }}
+
+                {#                <li class="nav-item"><a class="nav-link" href="https://github.com/JuanC-Fandino"
+                                        target="_blank">GitHub</a></li>#}
             </ul>
         </div>
     </div>
 </nav>
-<main class="container">
+<main class="container content_container">
     {{ render_messages(container=False, dismissible=True) }}
     {% block content %}{% endblock %}
 </main>
-
+<footer class="footer mt-auto py-3 bg-dark">
+    <div class="container text-center d-flex flex-column">
+        <span class="text-muted">Juan Camilo Fandiño Orjuela</span>
+        <span class="text-muted">© 2022</span>
+    </div>
+</footer>
 
 {% block scripts %}
     {{ bootstrap.load_js() }}
+    <script>
+        const dropdownPages = ['white', 'green', 'black'];
+        if (dropdownPages.includes(window.location.pathname.split('/')[1])) {
+            document.querySelector('#navbarDropdown').classList.add('active');
+        }
+    </script>
 {% endblock %}
 </body>
 </html>

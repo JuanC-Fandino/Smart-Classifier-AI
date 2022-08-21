@@ -21,10 +21,29 @@ body {
     color: #eee;
     background: #121212;
     font-family: "Silkscreen-Regular", sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .standard_text {
     color: darkgray;
+}
+
+.btn {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #25933f !important;
+    border-color: #25933f !important;
+    color: white;
+}
+
+.content_container {
+    margin-bottom: 2rem;
 }
 
 @font-face {
