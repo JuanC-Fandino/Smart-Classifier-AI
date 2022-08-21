@@ -11,11 +11,16 @@
     border: 2px red dashed;
 }
 
-.info_container{
+.info_container {
     margin-top: 2rem;
 }
 
-.accordion-button:not(.collapsed) {
+.accordion-green:not(.collapsed) {
     background-color: green !important;
+    color: white;
+}
+
+.accordion-red:not(.collapsed) {
+    background-color: red !important;
     color: white;
 }

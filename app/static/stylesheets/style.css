@@ -31,14 +31,14 @@ body {
 }
 
 .btn {
-    background-color: #28a745 !important;
-    border-color: #28a745 !important;
+    background-color: #28a745;
+    border-color: #28a745;
     color: white;
 }
 
 .btn:hover {
-    background-color: #25933f !important;
-    border-color: #25933f !important;
+    background-color: #25933f;
+    border-color: #25933f;
     color: white;
 }
 
