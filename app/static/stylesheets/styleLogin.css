@@ -25,3 +25,28 @@
     border-top-right-radius: 0;
 }
 
+#username::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: lightgray;
+  opacity: 1; /* Firefox */
+}
+
+#username:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: lightgray;
+}
+
+#username::-ms-input-placeholder { /* Microsoft Edge */
+  color: lightgray;
+}
+
+#password::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: lightgray;
+  opacity: 1; /* Firefox */
+}
+
+#password:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: lightgray;
+}
+
+#password::-ms-input-placeholder { /* Microsoft Edge */
+  color: lightgray;
+}
