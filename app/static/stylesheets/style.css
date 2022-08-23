@@ -30,6 +30,10 @@ body {
     color: darkgray;
 }
 
+.standard_text:hover {
+    color: #3b3434;
+}
+
 .btn {
     background-color: #28a745;
     border-color: #28a745;
