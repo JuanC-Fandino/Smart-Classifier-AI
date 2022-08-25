@@ -83,6 +83,8 @@
 
 {% block scripts %}
     {{ super() }}
+    <!-- LOAD LATEST TENSORFLOW JS LIBRARY -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
     <script>
         const player = document.getElementById('player');
 
@@ -93,5 +95,10 @@
         navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
             player.srcObject = stream;
         });
+    </script>
+    <script>
+        tf.loadGraphModel("../static/models/jsmodel/model.json").then(model => {
+            this._model = model;
+        })
     </script>
 {% endblock %}
