@@ -26,6 +26,24 @@
             </div>
         </div>
     </div>
+    <div id="results-box" class="card">
+        <h5 class="card-header text-secondary">Resultado</h5>
+        <div class="card-body">
+            <div class="card-text standard_text ">
+                El desecho es:
+                <b id="prediction"></b>
+                <br>
+                La bolsa correspondiente es:
+                <b id="bag"></b>
+                <div class="d-flex justify-content-end">
+                    <button>
+                        Clasificar otro residuo
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <div class="types">
         <div class="card mb-3">
             <h5 class="card-header text-secondary">Residuos aprovechables</h5>
@@ -85,20 +103,5 @@
     {{ super() }}
     <!-- LOAD LATEST TENSORFLOW JS LIBRARY -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
-    <script>
-        const player = document.getElementById('player');
-
-        const constraints = {
-            video: true,
-        };
-
-        navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-            player.srcObject = stream;
-        });
-    </script>
-    <script>
-        tf.loadGraphModel("../static/models/jsmodel/model.json").then(model => {
-            this._model = model;
-        })
-    </script>
+    <script src="../static/js/camera.js"></script>
 {% endblock %}
