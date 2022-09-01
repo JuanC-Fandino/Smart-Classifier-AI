@@ -76,21 +76,17 @@ async function predictWebcam() {
     document.getElementById("bag").innerText = bolsa;
 }
 
-
 // Enable the live webcam view and start classification.
 function enableCam() {
     // getUsermedia parameters to force video but not audio.
     const constraints = {
         video: true
     };
-
     // Get the video element and add the event listener for when the
     // video stream is ready to start.
-
     // Activate the webcam stream.
     navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
         video.srcObject = stream;
-        console.log("here");
         video.addEventListener('loadeddata', predictWebcam);
     });
 }

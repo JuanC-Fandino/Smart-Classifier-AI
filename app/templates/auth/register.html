@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_field %}
+
+{% block content %}
+    <link href="../../static/stylesheets/styleRegister.css" rel="stylesheet"/>
+    <div class="card text-secondary col-md-6 m-auto">
+        <div class="card-body standard_text">
+            <div class="">
+                <h5 class="card-title text-muted mt-2 mb-3">Regístrate</h5>
+            </div>
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <form class="form">
+                <div class="d-flex">
+                    <div class="col-sm-6">
+                        {{ render_field(form.name) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ render_field(form.lastname) }}
+                    </div>
+                </div>
+
+                {{ render_field(form.email) }}
+                {{ render_field(form.password) }}
+                {{ render_field(form.password_confirm) }}
+                <div class="mt-2 d-flex justify-content-center">
+                    {{ render_field(form.submit) }}
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    <div class="card text-secondary col-md-6 m-auto">
+        <div id="show" class="card-body standard_text">
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        document.getElementById("submit").onclick = function (ev) {
+            ev.preventDefault();
+            var x = document.getElementById("name");
+            var y = document.getElementById("lastname");
+            var z = document.getElementById("email");
+            var w = document.getElementById("password");
+
+            var show = document.getElementById("show");
+            show.innerHTML = "Nombre: " + x.value + "<br>Apellido: " + y.value + "<br>Email: " + z.value + "<br>Contraseña: " + w.value;
+            return false;
+        }
+    </script>
+{% endblock %}
