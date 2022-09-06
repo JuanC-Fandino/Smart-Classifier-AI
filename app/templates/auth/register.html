@@ -37,6 +37,15 @@
     </div>
     <div class="card text-secondary col-md-6 m-auto">
         <div id="show" class="card-body standard_text">
+            <button class="btn btn-primary" onclick="poblarTabla()">Mostrar Usuarios</button>
+            <table id="tabla">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Contraseña</th>
+                </tr>
+            </table>
         </div>
     </div>
 {% endblock %}
@@ -45,16 +54,50 @@
 {% block scripts %}
     {{ super() }}
     <script>
+        let entries = [];
+
         document.getElementById("submit").onclick = function (ev) {
             ev.preventDefault();
-            var x = document.getElementById("name");
-            var y = document.getElementById("lastname");
-            var z = document.getElementById("email");
-            var w = document.getElementById("password");
+            let x = document.getElementById("name");
+            let y = document.getElementById("lastname");
+            let z = document.getElementById("email");
+            let w = document.getElementById("password");
+            let repeat = document.getElementById("password_confirm");
 
-            var show = document.getElementById("show");
-            show.innerHTML = "Nombre: " + x.value + "<br>Apellido: " + y.value + "<br>Email: " + z.value + "<br>Contraseña: " + w.value;
+            let customObject = {
+                name: x.value,
+                lastname: y.value,
+                email: z.value,
+                password: w.value
+            };
+            entries.push(customObject);
+            x.value = "";
+            y.value = "";
+            z.value = "";
+            w.value = "";
+            repeat.value = "";
             return false;
+        }
+
+        function poblarTabla() {
+            console.log(entries);
+            let tabla = document.getElementById("tabla");
+            // clean table first
+            while (tabla.rows.length > 1) {
+                tabla.deleteRow(1);
+            }
+            for (let i = 0; i < entries.length; i++) {
+                let row = tabla.insertRow(i + 1);
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                let cell3 = row.insertCell(2);
+                let cell4 = row.insertCell(3);
+                cell1.innerHTML = entries[i].name;
+                cell2.innerHTML = entries[i].lastname;
+                cell3.innerHTML = entries[i].email;
+                cell4.innerHTML = entries[i].password;
+            }
+
         }
     </script>
 {% endblock %}

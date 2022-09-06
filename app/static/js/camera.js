@@ -1,5 +1,6 @@
 var _model = undefined;
 const video = document.getElementById('player');
+const image = document.getElementById('imageF');
 
 tf.loadGraphModel("../static/models/jsmodel/model.json").then(model => {
     _model = model;
@@ -25,10 +26,27 @@ async function predictWebcam() {
     // reshape the tensor to be a 4d
     example = example.reshape([-1, 256, 256, 3]);
 
+    // normalize the image
+    example = example.div(255.0);
+
+    // make the prediction
+    // IMPORT and image from an url and make a prediction and not use the webcam
+    let example2 = tf.browser.fromPixels(image).resizeBilinear([256, 256]);
+    example2 = example2.reshape([-1, 256, 256, 3]);
+    example2 = example2.div(255.0);
+
+
+    const prediction = await _model.predict(example2).dataSync();
+    console.log(prediction);
+
+    // call this function again to keep predicting when the browser is ready
+    // window.requestAnimationFrame(predictWebcam);
+
     let predictions = await _model.predict(example).data();
 
-    const classes = ['Basura', 'Carton', 'Metal', 'Papel', 'Plastico', 'Vidrio'];
+    const classes = ['Aluminio', 'Carton', 'Envases_Plastico', 'Organicos', 'Papel', 'Plasticos', 'Tetra_Pak', 'Vidrio'];
 
+    console.log(predictions, "here");
     // get the model's prediction results
     let results = Array.from(predictions)
         .map(function (p, i) {
@@ -38,7 +56,9 @@ async function predictWebcam() {
             };
         }).sort(function (a, b) {
             return b.probability - a.probability;
-        }).slice(0, 5);
+        }).slice(0, 8);
+
+    console.log(results);
 
     const resultadosElemento = document.getElementById("results-box");
     document.getElementById("prediction").innerText = results[0].className + " - " + (Math.round(results[0].probability, 2)) + "%";
