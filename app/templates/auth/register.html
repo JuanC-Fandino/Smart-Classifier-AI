@@ -80,8 +80,15 @@
         }
 
         function poblarTabla() {
-            console.log(entries);
             let tabla = document.getElementById("tabla");
+            // insert new input element
+            let inputsito = document.createElement("input");
+            inputsito.setAttribute("type", "text");
+            inputsito.setAttribute("id", "input");
+            inputsito.setAttribute("placeholder", "Buscar");
+            inputsito.style.marginBottom = "10px";
+            document.body.appendChild(inputsito);
+
             // clean table first
             while (tabla.rows.length > 1) {
                 tabla.deleteRow(1);

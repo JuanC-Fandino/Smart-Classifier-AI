@@ -2,7 +2,7 @@ var _model = undefined;
 const video = document.getElementById('player');
 const image = document.getElementById('imageF');
 
-tf.loadGraphModel("../static/models/jsmodel/model.json").then(model => {
+tf.loadGraphModel("../static/models/jsmodel/saved_model.json").then(model => {
     _model = model;
     if (getUserMediaSupported()) {
         enableCam();

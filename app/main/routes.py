@@ -1,6 +1,8 @@
-from flask import render_template
+from flask import render_template, request
 from flask_login import login_required
+from app.cnn.CNN import CNN
 from app.main import bp
+red = CNN()
 
 
 @bp.route("/", methods=["POST", "GET"])
@@ -21,3 +23,10 @@ def black():
 @bp.route("/green", methods=["GET"])
 def green():
     return render_template("green.html")
+
+
+@bp.route("/infer", methods=["POST"])
+def infer():
+    data = request.json
+    image = data['image']
+    return red.infer(image)

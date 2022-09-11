@@ -6,7 +6,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
 
     SECRET_KEY = "123123"
-    DEBUG = True
+    DEBUG = False
     WTF_CSRF_ENABLED = False
     PERMANENT_SESSION_LIFETIME = timedelta(days=5)
     BOOTSTRAP_FORM_GROUP_CLASSES = ''
