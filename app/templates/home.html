@@ -26,10 +26,10 @@
             </div>
         </div>
     </div>
-    <div id="results-box" class="card">
-        <h5 class="card-header text-secondary">Resultado</h5>
+    <div id="results-box" class="card" style="display:none">
+        <h5 class="card-header text-secondary" id="text-title-resultado">Resultado</h5>
         <div class="card-body">
-            <div class="card-text standard_text ">
+            <div class="card-text standard_text" id="text-inside">
                 El desecho es:
                 <b id="prediction"></b>
                 <br>
@@ -96,13 +96,11 @@
                 </div>
             </div>
         </div>
-        <img id="imageF" src="https://media.istockphoto.com/photos/compost-with-composted-earth-picture-id479440915?k=20&m=479440915&s=612x612&w=0&h=UrEnqFrPIJr7bTaO6lz_cw9hZHqLnnsZ87nqYDB58o0=" alt="compost" width="256" height="256">
     </div>
 {% endblock %}
 
 {% block scripts %}
     {{ super() }}
-    <!-- LOAD LATEST TENSORFLOW JS LIBRARY -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
-{#    <script src="../static/js/camera.js"></script>#}
+    {#<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>#}
+    <script src="../static/js/camera.js"></script>
 {% endblock %}

@@ -1,14 +1,17 @@
 import os
 import tensorflow as tf
 from tensorflow import keras
+import numpy as np
+
+PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
+clases = ['Aluminio', 'Carton', 'Envases_Plastico', 'Organicos', 'Papel', 'Plasticos', 'Tetra_Pak', 'Vidrio']
 
 
 class CNN:
     def __init__(self):
-        self.saved_path = os.path.join(os.path.dirname(__file__), '/model/jsmodel/saved_model.json')
-        print(self.saved_path)
-        self.model = keras.experimental.load_from_saved_model(self.saved_path)
-        self.predict = self.model.signatures["serving_default"]
+        self.saved_path = os.path.join(PROJECT_ROOT, "residuos_model.h5")
+        self.model = keras.models.load_model(self.saved_path)
+        self.predict = tf.function(self.model)
         self.image_size = 256
 
     def preprocess(self, image):
@@ -16,8 +19,15 @@ class CNN:
         return tf.cast(image, tf.float32) / 255.0
 
     def infer(self, image=None):
-        tensor_image = tf.convert_to_tensor(image, dtype=tf.float32)
-        tensor_image = self.preprocess(tensor_image)
+        tensor_image = self.preprocess(image)
+
         shape = tensor_image.shape
-        tensor_image = tf.reshape(tensor_image, [1, shape[0], shape[1], shape[2]])
-        return self.predict(tensor_image)['conv2d_transpose_4']
+        tensor_image = tf.reshape(tensor_image, [1, shape[0], shape[1], 3])
+        prediction = self.predict(tensor_image)
+        class_name = clases[np.argmax(prediction)]
+
+        confidence = round(float(prediction[0][np.argmax(prediction)] * 10), 2)
+        return {
+            "prediction": class_name,
+            "confidence": f"{confidence}%"
+        }

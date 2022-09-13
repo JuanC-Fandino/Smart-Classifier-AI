@@ -37,13 +37,10 @@
     </div>
     <div class="card text-secondary col-md-6 m-auto">
         <div id="show" class="card-body standard_text">
-            <button class="btn btn-primary" onclick="poblarTabla()">Mostrar Usuarios</button>
             <table id="tabla">
                 <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Contraseña</th>
+                    <th>Pais</th>
+                    <th>Probabilidad</th>
                 </tr>
             </table>
         </div>
@@ -59,35 +56,26 @@
         document.getElementById("submit").onclick = function (ev) {
             ev.preventDefault();
             let x = document.getElementById("name");
-            let y = document.getElementById("lastname");
-            let z = document.getElementById("email");
-            let w = document.getElementById("password");
-            let repeat = document.getElementById("password_confirm");
 
-            let customObject = {
-                name: x.value,
-                lastname: y.value,
-                email: z.value,
-                password: w.value
-            };
-            entries.push(customObject);
-            x.value = "";
-            y.value = "";
-            z.value = "";
-            w.value = "";
-            repeat.value = "";
-            return false;
+            let url = 'https://api.nationalize.io?name=' + x.value;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    for (let i = 0; i < data.country.length; i++) {
+                        let customObj = {
+                            country: data.country[i].country_id,
+                            probability: data.country[i].probability
+                        }
+                        entries.push(customObj);
+                    }
+                    console.log(entries);
+                    poblarTabla();
+                    return false;
+                });
         }
 
         function poblarTabla() {
             let tabla = document.getElementById("tabla");
-            // insert new input element
-            let inputsito = document.createElement("input");
-            inputsito.setAttribute("type", "text");
-            inputsito.setAttribute("id", "input");
-            inputsito.setAttribute("placeholder", "Buscar");
-            inputsito.style.marginBottom = "10px";
-            document.body.appendChild(inputsito);
 
             // clean table first
             while (tabla.rows.length > 1) {
@@ -97,14 +85,9 @@
                 let row = tabla.insertRow(i + 1);
                 let cell1 = row.insertCell(0);
                 let cell2 = row.insertCell(1);
-                let cell3 = row.insertCell(2);
-                let cell4 = row.insertCell(3);
-                cell1.innerHTML = entries[i].name;
-                cell2.innerHTML = entries[i].lastname;
-                cell3.innerHTML = entries[i].email;
-                cell4.innerHTML = entries[i].password;
+                cell1.innerHTML = entries[i].country;
+                cell2.innerHTML = entries[i].probability;
             }
-
         }
     </script>
 {% endblock %}
