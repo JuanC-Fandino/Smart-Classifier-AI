@@ -35,59 +35,9 @@
 
         </div>
     </div>
-    <div class="card text-secondary col-md-6 m-auto">
-        <div id="show" class="card-body standard_text">
-            <table id="tabla">
-                <tr>
-                    <th>Pais</th>
-                    <th>Probabilidad</th>
-                </tr>
-            </table>
-        </div>
-    </div>
 {% endblock %}
 
 
 {% block scripts %}
     {{ super() }}
-    <script>
-        let entries = [];
-
-        document.getElementById("submit").onclick = function (ev) {
-            ev.preventDefault();
-            let x = document.getElementById("name");
-
-            let url = 'https://api.nationalize.io?name=' + x.value;
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    for (let i = 0; i < data.country.length; i++) {
-                        let customObj = {
-                            country: data.country[i].country_id,
-                            probability: data.country[i].probability
-                        }
-                        entries.push(customObj);
-                    }
-                    console.log(entries);
-                    poblarTabla();
-                    return false;
-                });
-        }
-
-        function poblarTabla() {
-            let tabla = document.getElementById("tabla");
-
-            // clean table first
-            while (tabla.rows.length > 1) {
-                tabla.deleteRow(1);
-            }
-            for (let i = 0; i < entries.length; i++) {
-                let row = tabla.insertRow(i + 1);
-                let cell1 = row.insertCell(0);
-                let cell2 = row.insertCell(1);
-                cell1.innerHTML = entries[i].country;
-                cell2.innerHTML = entries[i].probability;
-            }
-        }
-    </script>
 {% endblock %}
