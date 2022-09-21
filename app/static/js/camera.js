@@ -131,6 +131,7 @@ function getPredictionFromBackend() {
         body: formData
     }).then(response => response.json())
         .then(data => {
+            console.log(data);
             const resultadosElemento = document.getElementById("results-box");
             const texto = document.getElementById("text-inside");
             const titulo = document.getElementById("text-title-resultado");
@@ -183,4 +184,12 @@ function getPredictionFromBackend() {
             document.getElementById("bag").innerText = bolsa;
         });
 
+}
+
+// repeat the prediction when clicking the button
+function repeatPrediction() {
+    // hide the results box
+    const resultadosElemento = document.getElementById("results-box");
+    resultadosElemento.style.display = "none";
+    getPredictionFromBackend();
 }

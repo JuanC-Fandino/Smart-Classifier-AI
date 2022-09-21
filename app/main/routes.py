@@ -42,3 +42,9 @@ def infer():
         image = tf.io.decode_image(img_bytes, channels=3)
 
     return red.infer(image)
+
+
+@bp.route("/statistics", methods=["GET"])
+@login_required
+def statistics():
+    return render_template("statistics.html", title="Statistics")

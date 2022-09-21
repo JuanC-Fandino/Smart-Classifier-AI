@@ -14,7 +14,7 @@
                 </div>
             {% endif %}
 
-            <form class="form">
+            <form class="form" method="post" action="{{ url_for('auth.register') }}">
                 <div class="d-flex">
                     <div class="col-sm-6">
                         {{ render_field(form.name) }}

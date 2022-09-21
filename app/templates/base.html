@@ -43,6 +43,13 @@
             <img src="../static/logo.svg" alt="" width="30" height="30">
             Smart Classifier
         </a>
+        <ul class="navbar-nav navbar-left">
+            <span class="navbar-text">
+                {% if not current_user.is_anonymous %}
+                    <li>| {{ current_user.name + ' ' + current_user.last_name | default("",true) }}</li>
+                {% endif %}
+            </span>
+        </ul>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -60,9 +67,13 @@
                         <li><a class="dropdown-item text-muted" href="{{ url_for('main.black') }}">Negro</a></li>
                     </ul>
                 </li>
-                {{ render_nav_item('auth.login', 'Iniciar Sesión') }}
-                {{ render_nav_item('auth.register', 'Registrate') }}
-
+                {% if current_user.is_anonymous %}
+                    {{ render_nav_item('auth.login', 'Iniciar Sesión') }}
+                    {{ render_nav_item('auth.register', 'Registrate') }}
+                {% else %}
+                    {{ render_nav_item('main.statistics', 'Estadísticas') }}
+                    {{ render_nav_item('auth.logout', 'Cerrar Sesión') }}
+                {% endif %}
                 {#                <li class="nav-item"><a class="nav-link" href="https://github.com/JuanC-Fandino"
                                         target="_blank">GitHub</a></li>#}
             </ul>

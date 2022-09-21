@@ -13,14 +13,14 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         pass
-        user = User.query.filter_by(username=form.username.data).first()
+        user = User.query.filter_by(email=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('El usuario o la contraseña son incorrectos')
             return redirect(url_for('auth.login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('main.home')
+            next_page = url_for('main.statistics')
         return redirect(next_page)
     return render_template('auth/login.html', title='Sign In', form=form)
 
@@ -37,7 +37,7 @@ def register():
         return redirect(url_for('main.home'))
     form = RegisterForm()
     if form.validate_on_submit():
-        user = User(email=form.email.data, name=form.name.data, last_name=form.last_name.data)
+        user = User(email=form.email.data, name=form.name.data, last_name=form.lastname.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
