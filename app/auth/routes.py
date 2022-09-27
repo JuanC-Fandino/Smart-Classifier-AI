@@ -6,6 +6,7 @@ from app.models import User
 from app.auth.forms import LoginForm, RegisterForm
 from app import db
 
+
 @bp.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
@@ -15,7 +16,7 @@ def login():
         pass
         user = User.query.filter_by(email=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash('El usuario o la contraseña son incorrectos')
+            flash('El usuario o la contraseña son incorrectos', 'error')
             return redirect(url_for('auth.login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
@@ -41,6 +42,7 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Usuario creado con exito')
-        return redirect(url_for('auth.login'))
+        flash('Usuario creado exitosamente')
+        login_user(user)
+        return redirect(url_for('main.home'))
     return render_template('auth/register.html', title='Register', form=form)

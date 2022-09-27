@@ -1,6 +1,19 @@
+import enum
+from datetime import datetime
+
 from app import login, db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+
+
+class PredictionType(enum.Enum):
+    Aluminio = 0
+    Carton = 1
+    Contenedor_Plastico = 2
+    Organico = 3
+    Papel = 4
+    Tetra_Pak = 5
+    Vidrio = 6
 
 
 class User(UserMixin, db.Model):
@@ -23,3 +36,14 @@ class User(UserMixin, db.Model):
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+
+class PredictionRecord(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    datetime = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    prediction_type = db.Column(db.Enum(PredictionType))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship('User', backref=db.backref('predictions', lazy='dynamic'))
+
+    def __repr__(self):
+        return '<PredictionRecord {}>'.format(self.prediction_type)

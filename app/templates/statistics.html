@@ -8,7 +8,32 @@
         <div class="card">
             <h5 class="card-header text-secondary">Mis Estadísticas</h5>
             <div class="card-body">
-                <img src="https://cdn.statcdn.com/Infographic/images/normal/19963.jpeg" class="card-img-top" alt="...">
+                <table class="table">
+                    <tr>
+                        <th>
+                            Fecha
+                        </th>
+                        <th>
+                            Hora
+                        </th>
+                        <th>
+                            Tipo de Residuo
+                        </th>
+                    </tr>
+                    {% for record in records %}
+                    <tr>
+                        <td>
+                            {{ record.datetime.date() }}
+                        </td>
+                        <td>
+                            {{ record.datetime.time().strftime("%H:%M") }}
+                        </td>
+                        <td>
+                            {{ record.prediction_type.name }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
         </div>
     </div>

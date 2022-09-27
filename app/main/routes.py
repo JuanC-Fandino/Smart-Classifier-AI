@@ -1,10 +1,14 @@
 import base64
 
 from flask import render_template, request
-from flask_login import login_required
+from flask_login import login_required, current_user
+
+from app import db
 from app.cnn.CNN import CNN
 import tensorflow as tf
 from app.main import bp
+from app.models import PredictionRecord
+
 red = CNN()
 
 
@@ -41,10 +45,17 @@ def infer():
         img_bytes = base64.b64decode(image[offset:])
         image = tf.io.decode_image(img_bytes, channels=3)
 
-    return red.infer(image)
+    result = red.infer(image)
+    if current_user.is_authenticated:
+        prediction = PredictionRecord(prediction_type=result["prediction"], user_id=current_user.id)
+        db.session.add(prediction)
+        db.session.commit()
+
+    return result
 
 
 @bp.route("/statistics", methods=["GET"])
 @login_required
 def statistics():
-    return render_template("statistics.html", title="Statistics")
+    records = current_user.predictions.all()
+    return render_template("statistics.html", title="Statistics", records=records)
