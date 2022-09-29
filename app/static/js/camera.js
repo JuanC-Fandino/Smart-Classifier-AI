@@ -107,8 +107,10 @@ function enableCam() {
     // Activate the webcam stream.
     navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
         video.srcObject = stream;
+        // On Browser approach - Deprecated
         // video.addEventListener('loadeddata', predictWebcam);
-        video.addEventListener('loadeddata', getPredictionFromBackend);
+        // On Backend approach - Automatic - Deprecated
+        // video.addEventListener('loadeddata', getPredictionFromBackend);
     });
 }
 
@@ -137,7 +139,7 @@ function getPredictionFromBackend() {
             const titulo = document.getElementById("text-title-resultado");
             resultadosElemento.style.display = "block";
             document.getElementById("prediction").innerText = data.prediction + " - " + data.confidence;
-            var bolsa = "roja";
+            var bolsa;
             switch (data.prediction) {
                 case "Aluminio":
                     resultadosElemento.style.backgroundColor = "white";

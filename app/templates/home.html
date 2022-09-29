@@ -23,20 +23,23 @@
                 <div class="text-center">
                     <img src="../static/ia.png" class="ia_icon">
                 </div>
+                <button class="scan_btn" onclick="repeatPrediction()">
+                    ¡Escanear!
+                </button>
             </div>
         </div>
     </div>
     <div id="results-box" class="card" style="display:none">
         <h5 class="card-header text-secondary" id="text-title-resultado">Resultado</h5>
         <div class="card-body">
-            <div class="card-text standard_text" id="text-inside">
+            <div class="card-text text-black" id="text-inside">
                 El desecho es:
                 <b id="prediction"></b>
                 <br>
                 La bolsa correspondiente es:
                 <b id="bag"></b>
                 <div class="d-flex justify-content-end">
-                    <button onclick="repeatPrediction()">
+                    <button class="btn" onclick="repeatPrediction()">
                         Clasificar otro residuo
                     </button>
                 </div>

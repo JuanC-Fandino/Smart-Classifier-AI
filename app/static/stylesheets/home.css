@@ -9,6 +9,18 @@
     gap: 3%
 }
 
+.scan_btn{
+    background-color: darkslategray;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    width: 100%;
+
+}
+
 .side {
     width: 100%;
     height: available;
@@ -51,5 +63,10 @@
         justify-content: center;
         width: 100px;
         height: unset;
+    }
+
+    .my-auto{
+        display: flex;
+        flex-direction: column-reverse;
     }
 }

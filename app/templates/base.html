@@ -99,6 +99,16 @@
             document.querySelector('#navbarDropdown').classList.add('active');
         }
     </script>
+
+    <script src="../static/js/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("h1").hide();
+            $("h1").fadeIn(1000);
+            $(".types").hide();
+            $(".types").fadeIn(1000);
+        });
+    </script>
 {% endblock %}
 </body>
 </html>
