@@ -3,6 +3,7 @@ import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 
+tf.config.set_visible_devices([], 'GPU')
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 clases = ['Aluminio', 'Carton', 'Envases_Plastico', 'Organicos', 'Papel', 'Plasticos', 'Tetra_Pak', 'Vidrio']
 
