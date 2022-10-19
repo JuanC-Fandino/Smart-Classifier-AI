@@ -133,57 +133,54 @@ function getPredictionFromBackend() {
         body: formData
     }).then(response => response.json())
         .then(data => {
-            console.log(data);
             const resultadosElemento = document.getElementById("results-box");
-            const texto = document.getElementById("text-inside");
-            const titulo = document.getElementById("text-title-resultado");
+            const contenidoOriginal = document.getElementById("original-content");
+            const botonEscanear = document.getElementById("scan_btn");
             resultadosElemento.style.display = "block";
-            document.getElementById("prediction").innerText = data.prediction + " - " + data.confidence;
-            var bolsa;
+            contenidoOriginal.style.display = "none";
+            botonEscanear.style.display = "none";
+            const prediccion = document.getElementById("prediction");
+            prediccion.innerText = data.prediction;
+            const confianza = document.getElementById("confidence");
+            confianza.innerText = data.confidence;
+            let bolsa;
+            const bolsaElemento = document.getElementById("bag");
+            const imagenResultado = document.getElementById("result-image");
+            imagenResultado.src = image;
             switch (data.prediction) {
                 case "Aluminio":
-                    resultadosElemento.style.backgroundColor = "white";
                     bolsa = "blanca";
                     break;
                 case "Carton":
-                    resultadosElemento.style.backgroundColor = "white";
                     bolsa = "blanca";
                     break;
                 case "Envases_Plastico":
-                    resultadosElemento.style.backgroundColor = "white";
                     bolsa = "blanca";
                     break;
                 case "Organicos":
-                    resultadosElemento.style.backgroundColor = "green";
-                    texto.style.color = "white";
-                    titulo.style.color = "white";
-                    titulo.style.setProperty("color", "white", "important");
                     bolsa = "verde";
+                    bolsaElemento.style.color = "green";
                     break;
                 case "Papel":
-                    resultadosElemento.style.backgroundColor = "white";
                     bolsa = "blanca";
                     break;
                 case "Plasticos":
-                    resultadosElemento.style.backgroundColor = "white";
                     bolsa = "blanca";
                     break;
                 case "Tetra_Pak":
-                    resultadosElemento.style.backgroundColor = "white";
                     bolsa = "blanca";
                     break;
                 case "Vidrio":
-                    resultadosElemento.style.backgroundColor = "white";
                     bolsa = "blanca";
                     break;
                 default:
-                    resultadosElemento.style.backgroundColor = "black";
-                    texto.style.color = "white";
-                    titulo.style.setProperty("color", "white", "important");
                     bolsa = "negra";
+                    bolsaElemento.style.color = "black";
+                    bolsaElemento.style.backgroundColor = "white";
+                    break;
 
             }
-            document.getElementById("bag").innerText = bolsa;
+            bolsaElemento.innerText = bolsa;
         });
 
 }
