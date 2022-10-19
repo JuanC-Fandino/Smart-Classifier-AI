@@ -100,7 +100,9 @@ async function predictWebcam() {
 function enableCam() {
     // getUsermedia parameters to force video but not audio.
     const constraints = {
-        video: true
+        video: {
+            facingMode: 'environment'
+        }
     };
     // Get the video element and add the event listener for when the
     // video stream is ready to start.
@@ -188,6 +190,8 @@ function getPredictionFromBackend() {
 // repeat the prediction when clicking the button
 function repeatPrediction() {
     // hide the results box
+    const botonEscanear = document.getElementById("scan_btn");
+    botonEscanear.style.display = "none";
     const resultadosElemento = document.getElementById("results-box");
     resultadosElemento.style.display = "none";
     getPredictionFromBackend();
