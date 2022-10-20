@@ -190,9 +190,15 @@ function getPredictionFromBackend() {
 
             }
             bolsaElemento.innerText = bolsa;
+
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Error al procesar la imagen");
+        })
+        .then(() => {
             changeButtonState();
         });
-
 }
 
 function changeButtonState() {
@@ -209,6 +215,8 @@ function changeButtonState() {
 
 // repeat the prediction when clicking the button
 function repeatPrediction() {
+    const resultadosElemento = document.getElementById("results-box");
+    resultadosElemento.style.display = "none";
     changeButtonState();
     getPredictionFromBackend();
 }

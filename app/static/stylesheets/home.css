@@ -37,12 +37,10 @@
 }
 
 .result-image {
-    object-fit: contain;
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
+    object-fit: cover;
     border-radius: 0.25rem;
+    aspect-ratio: 1/1;
+    object-position: center;
 }
 
 @-webkit-keyframes pulse {
