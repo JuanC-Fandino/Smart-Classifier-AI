@@ -42,6 +42,8 @@ class PredictionRecord(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     datetime = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     prediction_type = db.Column(db.Enum(PredictionType))
+    confidence = db.Column(db.Float)
+    isAccurate = db.Column(db.Boolean, default=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship('User', backref=db.backref('predictions', lazy='dynamic'))
 

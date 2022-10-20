@@ -8,33 +8,48 @@
         <div class="card">
             <h5 class="card-header text-secondary">Mis Estadísticas</h5>
             <div class="card-body">
-                <table class="table">
-                    <tr>
-                        <th>
-                            Fecha
-                        </th>
-                        <th>
-                            Hora
-                        </th>
-                        <th>
-                            Tipo de Residuo
-                        </th>
-                    </tr>
-                    {% for record in records %}
-                    <tr>
-                        <td>
-                            {{ record.datetime.date() }}
-                        </td>
-                        <td>
-                            {{ record.datetime.time().strftime("%H:%M") }}
-                        </td>
-                        <td>
-                            {{ record.prediction_type.name }}
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </table>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Fecha
+                            </th>
+                            <th>
+                                Hora
+                            </th>
+                            <th>
+                                Tipo de Residuo
+                            </th>
+                            <th>
+                                Confianza
+                            </th>
+                        </tr>
+                        {% for record in records %}
+                            <tr>
+                                <td>
+                                    {{ record.datetime.date() }}
+                                </td>
+                                <td>
+                                    {{ record.datetime | utc_to_local }}
+                                </td>
+                                <td>
+                                    {{ record.prediction_type.name }}
+                                </td>
+                                <td>
+                                    {{ record.confidence }}%
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div id="myPlot" class="custom-plot"></div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="../static/js/plotly-2.14.0.min.js"></script>
+    <script src="../static/js/plots.js"></script>
 {% endblock %}

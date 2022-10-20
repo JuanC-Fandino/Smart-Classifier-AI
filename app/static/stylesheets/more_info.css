@@ -24,3 +24,14 @@
     background-color: red !important;
     color: white;
 }
+
+.custom-plot {
+    margin: auto;
+    max-width: 70%;
+}
+
+@media (max-width: 768px) {
+    .custom-plot {
+        max-width: 100%;
+    }
+}

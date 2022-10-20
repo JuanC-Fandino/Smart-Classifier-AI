@@ -113,7 +113,13 @@ function enableCam() {
         // video.addEventListener('loadeddata', predictWebcam);
         // On Backend approach - Automatic - Deprecated
         // video.addEventListener('loadeddata', getPredictionFromBackend);
+        video.addEventListener('loadeddata', turnOnButton);
     });
+}
+
+function turnOnButton() {
+    const botonEscanear = document.getElementById("scan_btn");
+    botonEscanear.style.display = "flex";
 }
 
 // Call to the backend to get the prediction, send image as a form data file
@@ -130,6 +136,7 @@ function getPredictionFromBackend() {
     let formData = new FormData();
     formData.append('image', image);
 
+
     fetch('/infer', {
         method: 'POST',
         body: formData
@@ -137,18 +144,18 @@ function getPredictionFromBackend() {
         .then(data => {
             const resultadosElemento = document.getElementById("results-box");
             const contenidoOriginal = document.getElementById("original-content");
-            const botonEscanear = document.getElementById("scan_btn");
             resultadosElemento.style.display = "block";
             contenidoOriginal.style.display = "none";
-            botonEscanear.style.display = "none";
             const prediccion = document.getElementById("prediction");
             prediccion.innerText = data.prediction;
             const confianza = document.getElementById("confidence");
-            confianza.innerText = data.confidence;
+            confianza.innerText = `${data.confidence}%`;
             let bolsa;
             const bolsaElemento = document.getElementById("bag");
             const imagenResultado = document.getElementById("result-image");
             imagenResultado.src = image;
+            bolsaElemento.style.color = "white";
+            bolsaElemento.style.backgroundColor = "transparent";
             switch (data.prediction) {
                 case "Aluminio":
                     bolsa = "blanca";
@@ -183,16 +190,25 @@ function getPredictionFromBackend() {
 
             }
             bolsaElemento.innerText = bolsa;
+            changeButtonState();
         });
 
 }
 
+function changeButtonState() {
+    const botonEscanear = document.getElementById("scan_btn");
+    if (botonEscanear.disabled) {
+        botonEscanear.disabled = false;
+        botonEscanear.innerText = "Escanear";
+    } else {
+        botonEscanear.style.display = "flex";
+        botonEscanear.innerHTML = ' <p class="spinner-border mt-auto mb-auto" role="status"></p><p class="processing">Procesando...</p>';
+        botonEscanear.disabled = true;
+    }
+}
+
 // repeat the prediction when clicking the button
 function repeatPrediction() {
-    // hide the results box
-    const botonEscanear = document.getElementById("scan_btn");
-    botonEscanear.style.display = "none";
-    const resultadosElemento = document.getElementById("results-box");
-    resultadosElemento.style.display = "none";
+    changeButtonState();
     getPredictionFromBackend();
 }

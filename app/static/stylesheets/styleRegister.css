@@ -4,11 +4,32 @@
     gap: 1rem;
 }
 
-.form-label{
+.form-label {
     color: gray;
 }
 
 table, th, td {
     border: 1px solid;
     border-collapse: collapse;
+}
+
+.stylish_header {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.stylish_inside {
+    width: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+    .stylish_inside {
+        width: 100%;
+    }
+
+    .stylish_header {
+        display: flex;
+        flex-direction: column;
+    }
 }

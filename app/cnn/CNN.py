@@ -27,5 +27,5 @@ class CNN:
         confidence = round(float(prediction[0][np.argmax(prediction)] * 100), 2)
         return {
             "prediction": class_name,
-            "confidence": f"{confidence}%"
+            "confidence": confidence
         }
