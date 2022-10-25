@@ -30,7 +30,7 @@
                                     {{ record.datetime.date() }}
                                 </td>
                                 <td>
-                                    {{ record.datetime }}
+                                    {{ record.datetime | utc_to_local }}
                                 </td>
                                 <td>
                                     {{ record.prediction_type.name }}
