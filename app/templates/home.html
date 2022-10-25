@@ -32,6 +32,7 @@
             <div id="results-box" class="side card text-center p-3" style="display:none">
                 <h5 id="text-title-resultado">Resultado</h5>
                 <hr>
+                <input readonly hidden id="prediction_id"/>
                 <div class="results">
                     <div class="h3">
                         Residuo:
@@ -47,8 +48,21 @@
                     </div>
                     <hr>
                     <img id="result-image" src="" class="result-image">
+                    <hr>
+                    <div class="h6" id="feedback">
+                        Es correcta la predicción?
+                        <div class="mt-2 feedback">
+                            <button id="btn-yes" class="btn btn-success btn-sm flex-grow-1"
+                                    onclick="sendFeedback(true)">
+                                {{ render_icon('check', size='2rem') }}
+                            </button>
+                            <button id="btn-no" class="btn-danger btn-sm flex-grow-1" onclick="sendFeedback(false)">
+                                {{ render_icon('x', size='2rem') }}
+                            </button>
+                        </div>
+                    </div>
+                    <p id="thanks" style="display: none;">¡Gracias por enviar tu feedback!</p>
                 </div>
-
             </div>
         </div>
 

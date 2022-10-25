@@ -1,6 +1,6 @@
 import base64
 
-from flask import render_template, request
+from flask import render_template, request, Response
 from flask_login import login_required, current_user
 
 from app import db
@@ -51,6 +51,12 @@ def infer():
                                       confidence=result["confidence"])
         db.session.add(prediction)
         db.session.commit()
+    else:
+        prediction = PredictionRecord(prediction_type=result["prediction"], confidence=result["confidence"])
+        db.session.add(prediction)
+        db.session.commit()
+
+    result["id"] = prediction.id
 
     return result
 
@@ -63,6 +69,7 @@ def statistics():
 
 
 @bp.route("/statistics/sorted", methods=["GET"])
+@login_required
 def statistics_sorted():
     records = PredictionRecord.query.filter_by(user_id=current_user.id).with_entities(
         PredictionRecord.prediction_type,
@@ -79,6 +86,7 @@ def statistics_sorted():
 
 
 @bp.route("/dashboard", methods=["GET"])
+@login_required
 def dashboard():
     users = User.query.count()
     predictions = PredictionRecord.query.count()
@@ -95,6 +103,7 @@ def dashboard():
 
 
 @bp.route("/dashboard/statistics_per_day", methods=["GET"])
+@login_required
 def statistics_per_day():
     # group the predictions by day
     records = PredictionRecord.query.with_entities(
@@ -111,3 +120,15 @@ def statistics_per_day():
     print(results_array)
 
     return results_array
+
+
+@bp.route("/accuracy", methods=["POST"])
+def attach_accuracy_to_prediction():
+    data = request.form
+    prediction_id = data["prediction_id"]
+    accuracy = True if data["is_accurate"] == "true" else False
+    prediction = PredictionRecord.query.filter_by(id=prediction_id).first()
+    prediction.isAccurate = accuracy
+    db.session.commit()
+
+    return Response(status=200)

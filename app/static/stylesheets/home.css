@@ -103,6 +103,13 @@
     gap: 1rem;
 }
 
+.feedback {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: space-around;
+}
+
 @media (max-width: 1200px) {
     .main_container {
         display: flex;

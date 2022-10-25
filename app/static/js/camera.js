@@ -142,20 +142,31 @@ function getPredictionFromBackend() {
         body: formData
     }).then(response => response.json())
         .then(data => {
+            // Ocultar el contenido lateral y mostrar los resultados en su lugar
             const resultadosElemento = document.getElementById("results-box");
             const contenidoOriginal = document.getElementById("original-content");
             resultadosElemento.style.display = "block";
             contenidoOriginal.style.display = "none";
+
+            // Poblamos los resultados
             const prediccion = document.getElementById("prediction");
             prediccion.innerText = data.prediction;
             const confianza = document.getElementById("confidence");
             confianza.innerText = `${data.confidence}%`;
+
+            // Determinamos el color de la bolsa y mostramos la imagen correspondiente
             let bolsa;
             const bolsaElemento = document.getElementById("bag");
             const imagenResultado = document.getElementById("result-image");
             imagenResultado.src = image;
             bolsaElemento.style.color = "white";
             bolsaElemento.style.backgroundColor = "transparent";
+
+            // Almacenamos el id de la predicción para poder enviarlo al backend en el feedback
+            const id = document.getElementById("prediction_id");
+            id.value = data.id;
+
+            // Elegimos el color de la bolsa
             switch (data.prediction) {
                 case "Aluminio":
                     bolsa = "blanca";
@@ -191,6 +202,13 @@ function getPredictionFromBackend() {
             }
             bolsaElemento.innerText = bolsa;
 
+            // Mostramos el componente de feedback
+            const feedback = document.getElementById("feedback");
+            feedback.style.display = "block";
+            // Ocultamos el agradecimiento
+            const thanksElement = document.getElementById("thanks");
+            thanksElement.style.display = "none";
+
         })
         .catch(error => {
             console.error(error);
@@ -219,4 +237,27 @@ function repeatPrediction() {
     resultadosElemento.style.display = "none";
     changeButtonState();
     getPredictionFromBackend();
+}
+
+function sendFeedback(isAccurate) {
+    const id = document.getElementById("prediction_id").value;
+    let formData = new FormData();
+    formData.append('prediction_id', id);
+    formData.append('is_accurate', isAccurate);
+    fetch('/accuracy', {
+        method: 'POST',
+        body: formData
+    }).then(response => {
+        if (response.status === 200) {
+            const feedbackElement = document.getElementById("feedback");
+            feedbackElement.style.display = "none";
+            const thanksElement = document.getElementById("thanks");
+            thanksElement.style.display = "block";
+        } else {
+            alert("Error al enviar el feedback");
+        }
+    }).catch(error => {
+        console.error(error);
+        alert("Error al enviar el feedback");
+    });
 }

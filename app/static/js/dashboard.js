@@ -6,7 +6,8 @@ fetch('/dashboard/statistics_per_day', {
 }).then(response => response.json())
     .then(data => {
         for (let i = 0; i < data.length; i++) {
-            classes.push(data[i].datetime);
+            let date = new Date(data[i].datetime);
+            classes.push(date.toISOString().split("T")[0]);
             yArray.push(data[i].count);
         }
         let allData = [{
