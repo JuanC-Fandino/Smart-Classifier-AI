@@ -23,6 +23,9 @@
                             <th>
                                 Confianza
                             </th>
+                            <th class="text-center">
+                                ¿Correcto?
+                            </th>
                         </tr>
                         {% for record in records %}
                             <tr>
@@ -37,6 +40,15 @@
                                 </td>
                                 <td>
                                     {{ record.confidence }}%
+                                </td>
+                                <td class="text-center">
+                                    {% if record.isAccurate is none %}
+                                        <span class="badge bg-warning text-dark">?</span>
+                                    {% elif record.isAccurate %}
+                                        <span class="badge bg-success">Si</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">No</span>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}

@@ -64,7 +64,7 @@ def infer():
 @bp.route("/statistics", methods=["GET"])
 @login_required
 def statistics():
-    records = current_user.predictions.all()
+    records = current_user.predictions.order_by(PredictionRecord.datetime.desc()).all()
     return render_template("statistics.html", title="Statistics", records=records)
 
 

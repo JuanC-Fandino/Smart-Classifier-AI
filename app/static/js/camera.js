@@ -169,8 +169,8 @@ function getPredictionFromBackend() {
             // Determinamos el color de la bolsa y mostramos la imagen correspondiente
             let bolsa;
             const bolsaElemento = document.getElementById("bag");
-            // const imagenResultado = document.getElementById("result-image");
-            // imagenResultado.src = image;
+            const imagenResultado = document.getElementById("result-image");
+            imagenResultado.src = image;
             bolsaElemento.style.color = "white";
             bolsaElemento.style.backgroundColor = "transparent";
 
