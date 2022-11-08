@@ -11,6 +11,7 @@
         <div class="video_container">
             <video class="video_capture" id="player" autoplay
                    playsinline poster="../static/static-glitch.gif"></video>
+            <div class="spinner" id="spinner"></div>
         </div>
         <div class="lateral">
             <button id="scan_btn" class="scan_btn" onclick="repeatPrediction()">
@@ -47,8 +48,8 @@
                         <b id="confidence"></b>
                     </div>
                     <hr>
-                    <img id="result-image" src="" class="result-image">
-                    <hr>
+                    {#<img id="result-image" src="" class="result-image">#}
+                    {#<hr>#}
                     <div class="h6" id="feedback">
                         Es correcta la predicción?
                         <div class="mt-2 feedback">

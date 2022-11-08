@@ -1,5 +1,14 @@
 var _model = undefined;
 const video = document.getElementById('player');
+video.onpause = function () {
+    document.getElementById("spinner").style.display = "block"
+    video.style.filter = "grayscale(100%)";
+}
+
+video.onplay = function () {
+    document.getElementById("spinner").style.display = "none"
+    video.style.filter = "grayscale(0%)";
+}
 
 if (getUserMediaSupported()) {
     enableCam();
@@ -136,6 +145,9 @@ function getPredictionFromBackend() {
     let formData = new FormData();
     formData.append('image', image);
 
+    // Freeze the video
+    video.pause();
+
 
     fetch('/infer', {
         method: 'POST',
@@ -157,8 +169,8 @@ function getPredictionFromBackend() {
             // Determinamos el color de la bolsa y mostramos la imagen correspondiente
             let bolsa;
             const bolsaElemento = document.getElementById("bag");
-            const imagenResultado = document.getElementById("result-image");
-            imagenResultado.src = image;
+            // const imagenResultado = document.getElementById("result-image");
+            // imagenResultado.src = image;
             bolsaElemento.style.color = "white";
             bolsaElemento.style.backgroundColor = "transparent";
 
@@ -216,6 +228,8 @@ function getPredictionFromBackend() {
         })
         .then(() => {
             changeButtonState();
+            // Unfreeze the video
+            video.play();
         });
 }
 
