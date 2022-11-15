@@ -17,7 +17,7 @@ fetch('/dashboard/statistics_per_day', {
         }];
 
         const layout = {
-            title: 'Números de predicciones por día',
+            title: 'Número de predicciones por día',
         };
         const config = {responsive: true}
 
