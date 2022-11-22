@@ -18,13 +18,18 @@
                 ¡Escanear!
             </button>
             <div id="original-content" class="side card text-center p-3">
-                <div class="my-auto">
-                    ¡DANOS ACCESO TU CÁMARA Y COMIENZA A USAR NUESTRA APP!
+                <div class="my-auto" style="display:flex; flex-direction: column">
+                    <p class="text-inside-side">
+                        ¡DANOS ACCESO TU CÁMARA Y COMIENZA A USAR NUESTRA APP!
+                    </p>
                     <div class="text-center">
                         {{ render_icon('camera', size='70px') }}
                     </div>
-                    <hr>
-                    Deja que nuestros avanzados algoritmos de inteligencia artificial te faciliten la vida
+                    <hr class="pushable-hr-top">
+                    <hr class="pushable-hr-bottom">
+                    <p class="text-inside-side">
+                        Deja que nuestro modelo de machine learning te indique en qué bolsa debes tirar tu basura
+                    </p>
                     <div class="text-center">
                         <img src="../static/ia.png" class="ia_icon">
                     </div>
