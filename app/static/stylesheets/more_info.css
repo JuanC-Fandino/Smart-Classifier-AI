@@ -35,3 +35,25 @@
         max-width: 100%;
     }
 }
+
+.whole-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+
+
+
+.kpi {
+    font-size: xxx-large;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: #263238;
+}
+
+.kpi-label {
+    font-size: x-large;
+    color: #263238;
+}

@@ -3,30 +3,90 @@
 
 {% block content %}
     <link href="../static/stylesheets/more_info.css" rel="stylesheet"/>
+    <h5 class="card-header text-secondary"></h5>
 
-    <div class="info_container">
+    <div class="d-flex justify-content-between mb-1">
+        <h1 class="text-center mb-4">
+            Estadísticas Generales
+        </h1>
+    </div>
+
+
+    <div class="whole-container">
         <div class="card">
-            <h5 class="card-header text-secondary">Estadísticas Globales</h5>
-
             <div class="card-body text-black">
-                <p class="text-black">
-                    Usuarios registrados: <b>{{ users }}</b>
+                <p class="kpi-label">
+                    Usuarios registrados
                 </p>
-                <p>
-                    Predicciones totales: <b>{{ predictions }}</b>
+                <p class="kpi">{{ users }}</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body text-black">
+                <p class="kpi-label">
+                    Predicciones totales
                 </p>
-                <p>
-                    Confianza promedio: <b>{{ average_confidence | round(2) }}%</b>
+                <p class="kpi">{{ predictions }}</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="text-black">
+                <div id="usersPlot" class="custom-plot"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="text-black">
+                <div id="myPlot" class="custom-plot"></div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-body text-black">
+                <p class="kpi-label">
+                    Confianza promedio
                 </p>
-                <p>
-                    Desviación estandar (Confianza): <b>{{ standard_deviation | round(2) }}</b>
+                <p class="kpi">{{ average_confidence | round(2) }}%</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body text-black">
+                <p class="kpi-label">
+                    Desviación estandar (Confianza)
                 </p>
-                <div>
-                    <div id="myPlot" class="custom-plot"></div>
+                <p class="kpi">{{ standard_deviation | round(2) }}</p>
+            </div>
+        </div>
+
+        <div class="card" style="height: min-content">
+            <div class="card-body text-black">
+                <p class="kpi-label">
+                    Porcentaje de predicciones correctas
+                </p>
+                <p class="kpi">{{ correct_predictions_percentage }}%</p>
+            </div>
+
+            <div id="custom_type" class="card" style="height: min-content; display: none">
+                <div class="card-body text-black">
+                    <p id="type_label" class="kpi-label">
+                    </p>
+                    <p id="type_value" class="kpi"></p>
                 </div>
             </div>
         </div>
+
+        <div class="card">
+            <div class="text-black">
+                <div id="predictionsPlot" class="custom-plot"></div>
+            </div>
+        </div>
+
+
     </div>
+
+
 {% endblock %}
 
 {% block scripts %}
