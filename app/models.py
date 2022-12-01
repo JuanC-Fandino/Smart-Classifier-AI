@@ -9,11 +9,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class PredictionType(enum.Enum):
     Aluminio = 0
     Carton = 1
-    Contenedor_Plastico = 2
-    Organico = 3
+    Envases_Plastico = 2
+    Organicos = 3
     Papel = 4
-    Tetra_Pak = 5
-    Vidrio = 6
+    Plasticos = 5
+    Tetra_Pak = 6
+    Vidrio = 7
 
 
 class User(UserMixin, db.Model):
